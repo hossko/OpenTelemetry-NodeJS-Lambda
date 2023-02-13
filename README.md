@@ -5,7 +5,7 @@ Ref doc: https://opentelemetry.io/docs/instrumentation/js/serverless/
 
 Add Otel configuration as a wrapper script and include it as a require for NodeJS runtime using env variable: NODE_OPTIONS: --require otel  
 
-# Running the App Using AWS Sam Cli:
+# Run the App:
 Install Sam cli for your workstation: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html
 
 ```
@@ -19,7 +19,7 @@ sam logs -t --stack-name=otel-nodejs-demo
 sam delete --stack-name=otel-nodejs-demo
 ```
 
-# Making API Calls
+# Testing
 ```
 # Insert Item
 curl -X "PUT" -H "Content-Type: application/json" -d "{\"id\": \"123\", \"price\": 12345, \"name\": \"myitem\"}" https://${APIGW_FQDN}/items
