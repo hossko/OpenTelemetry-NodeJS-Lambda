@@ -6,13 +6,28 @@ Add Otel configucation in a wrapper script and include it as a require for NodeJ
 # Running the App Using AWS Sam Cli:
 Install Sam cli for your workstation: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html
 
-Deploy and Sync
+```
+# Deploy and Sync:
+sam sync --stack-name=otel-nodejs-demo
 
+# View logs
+sam logs -t --stack-name=otel-nodejs-demo
+
+# Delete stack
+sam delete --stack-name=otel-nodejs-demo
+```
+
+# Making API Calls
+```
 # Insert Item
-curl -X "PUT" -H "Content-Type: application/json" -d "{\"id\": \"123\", \"price\": 12345, \"name\": \"myitem\"}" https://94fuqc2e10.execute-api.us-east-1.amazonaws.com/items
+curl -X "PUT" -H "Content-Type: application/json" -d "{\"id\": \"123\", \"price\": 12345, \"name\": \"myitem\"}" https://${APIGW_FQDN}/items
 # Get All Items
-curl https://dnxojxeg13.execute-api.us-east-1.amazonaws.com/items
+curl https://${APIGW_FQDN}/items
 # Get an Item
-curl https://94fuqc2e10.execute-api.us-east-1.amazonaws.com/items/123
+curl https://${APIGW_FQDN}/items/123
 # Delete an Item
-curl -X "DELETE" https://94fuqc2e10.execute-api.us-east-1.amazonaws.com/items/123
+curl -X "DELETE" https://${APIGW_FQDN}/items/123
+```
+
+# Expected Results
+Using OpenTelemtry NodeAutoInstrumentation with AWS lambda detection should results in 3 Spans with same TraceID printed to the console logs.
