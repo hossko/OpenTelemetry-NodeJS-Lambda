@@ -30,4 +30,4 @@ curl -X "DELETE" https://${APIGW_FQDN}/items/123
 ```
 
 # Expected Results
-Using OpenTelemtry NodeAutoInstrumentation with AWS lambda detection should results in 3 Spans with same TraceID printed to the console logs.
+Using OpenTelemtry NodeAutoInstrumentation with AWS lambda detection should results in 3 Spans with same TraceID printed to the console logs. The TraceID is auto detected from X-RAY headers passed from the APIGateway. 
