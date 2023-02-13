@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS SAM CLI Nested Stack for Auto Dependency Layer Creation
+Metadata:
+  SamCliInfo: 1.71.0
+  key: AWS SAM CLI sync command
+Outputs:
+  DDBHandlerFunctionbd7332faDepLayer:
+    Value:
+      Ref: DDBHandlerFunctionbd7332faDepLayer
+Resources:
+  DDBHandlerFunctionbd7332faDepLayer:
+    Metadata:
+      CreatedBy: AWS SAM CLI sync command
+    Properties:
+      CompatibleRuntimes:
+      - nodejs18.x
+      ContentUri: /home/houssam/Workspace/aws/aws-sam/otel-nodejs-demo/commonjs/.aws-sam/auto-dependency-layer/DDBHandlerFunctionbd7332faDepLayer
+      Description: Auto created layer for dependencies of function DDBHandlerFunction
+      LayerName: otel-nodejs-demo433a1d75-DDBHandlerFunctionbd7332fa-DepLayer
+      RetentionPolicy: Delete
+    Type: AWS::Serverless::LayerVersion
+Transform: AWS::Serverless-2016-10-31
