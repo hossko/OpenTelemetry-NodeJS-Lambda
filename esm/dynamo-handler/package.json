@@ -2,8 +2,7 @@
   "name": "http-dynamo-tutorial",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
-  "type": "module",
+  "main": "app.mjs",
   "dependencies": {
     "@opentelemetry/api": "1.0.2",
     "@opentelemetry/instrumentation": "0.25.0",
@@ -13,8 +12,7 @@
     "@opentelemetry/sdk-trace-base": "0.25.0",
     "@opentelemetry/sdk-trace-node": "0.25.0",
     "@opentelemetry/id-generator-aws-xray": "1.1.1",
-    "axios": "^0.21.1",
-    "esm": "^3.2.25"
+    "axios": "^0.21.1"
   },
   "devDependencies": {},
   "scripts": {

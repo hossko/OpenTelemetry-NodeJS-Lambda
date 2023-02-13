@@ -7,13 +7,13 @@ const {
   DeleteCommand,
 } = require("@aws-sdk/lib-dynamodb");
 
+const axios = require("axios");
+
 const client = new DynamoDBClient({});
 
 const dynamo = DynamoDBDocumentClient.from(client);
 
 const tableName = "http-crud-tutorial-items";
-
-const axios = require("axios");
 
 module.exports.handler = async (event, context) => {
 

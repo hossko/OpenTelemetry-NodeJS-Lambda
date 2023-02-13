@@ -22,7 +22,7 @@ Resources:
             TableName: !Ref ItemsTable
       Environment:
         Variables:
-          NODE_OPTIONS: --require otel      
+          NODE_OPTIONS: --require otel.js     
       Events:
         GetAllItems:
           Type: HttpApi

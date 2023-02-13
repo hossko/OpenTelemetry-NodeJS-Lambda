@@ -1,11 +1,13 @@
-const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
-const {
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import {
   DynamoDBDocumentClient,
   ScanCommand,
   PutCommand,
   GetCommand,
   DeleteCommand,
-} = require("@aws-sdk/lib-dynamodb");
+} from "@aws-sdk/lib-dynamodb";
+
+import axios from "axios";
 
 const client = new DynamoDBClient({});
 
@@ -13,9 +15,8 @@ const dynamo = DynamoDBDocumentClient.from(client);
 
 const tableName = "http-crud-tutorial-items";
 
-const axios = require("axios");
 
-module.exports.handler = async (event, context) => {
+export const handler = async (event, Context) => {
 
   /// HTTP Call Example
   const todoItem = await axios('https://www.amazon.com');
@@ -26,6 +27,7 @@ module.exports.handler = async (event, context) => {
   const headers = {
     "Content-Type": "application/json",
   };
+
   try {
     switch (event.routeKey) {
       case "DELETE /items/{id}":
@@ -80,12 +82,9 @@ module.exports.handler = async (event, context) => {
     body = JSON.stringify(body);
   }
 
-  console.log("SERVER END");
-
   return {
     statusCode,
     body,
     headers,
   };
-
 };
