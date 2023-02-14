@@ -20,9 +20,9 @@ Resources:
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref ItemsTable
-      Environment:
-        Variables:
-          NODE_OPTIONS: --require otel.js     
+      # Environment:
+      #   Variables:
+      #     NODE_OPTIONS: --require otel.js     
       Events:
         GetAllItems:
           Type: HttpApi

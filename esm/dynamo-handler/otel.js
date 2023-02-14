@@ -1,27 +1,25 @@
-const { SimpleSpanProcessor, ConsoleSpanExporter } = require("@opentelemetry/sdk-trace-base");
-const { NodeTracerProvider } = require('@opentelemetry/sdk-trace-node');
-const { AwsLambdaInstrumentation } = require('@opentelemetry/instrumentation-aws-lambda');
-const { registerInstrumentations } = require('@opentelemetry/instrumentation');
-const { getNodeAutoInstrumentations } = require("@opentelemetry/auto-instrumentations-node");
+// otel.js
 
-const { AWSXRayIdGenerator } = require('@opentelemetry/id-generator-aws-xray');
+import { SimpleSpanProcessor, ConsoleSpanExporter } from "@opentelemetry/sdk-trace-base";
+import { NodeTracerProvider } from '@opentelemetry/sdk-trace-node';
+import { AwsLambdaInstrumentation } from '@opentelemetry/instrumentation-aws-lambda';
+import { registerInstrumentations } from '@opentelemetry/instrumentation';
+import { getNodeAutoInstrumentations } from "@opentelemetry/auto-instrumentations-node";
 
-// OTel JS - Core - Exporters
-// const { CollectorTraceExporter } = require('@opentelemetry/exporter-collector-grpc');
+import { AWSXRayIdGenerator } from '@opentelemetry/id-generator-aws-xray';
 
-const provider = new NodeTracerProvider({idGenerator: new AWSXRayIdGenerator()});
-provider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));
+  const provider = new NodeTracerProvider({idGenerator: new AWSXRayIdGenerator()});
+  provider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));
 
-// Expects Collector at env variable `OTEL_EXPORTER_OTLP_ENDPOINT`, otherwise, http://localhost:4317
-// provider.addSpanProcessor(new SimpleSpanProcessor(new CollectorTraceExporter()));
+  // Initialize the provider
+  provider.register();
 
-provider.register();
-
-registerInstrumentations({
- instrumentations: [
-   getNodeAutoInstrumentations(),
-   new AwsLambdaInstrumentation({
-     disableAwsContextPropagation: false
-   })
- ],
-});
+  // Registering instrumentations / plugins
+  registerInstrumentations({
+    instrumentations: [
+      getNodeAutoInstrumentations(),
+      new AwsLambdaInstrumentation({
+        disableAwsContextPropagation: false
+      })
+    ],
+   });
