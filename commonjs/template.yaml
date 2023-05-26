@@ -22,7 +22,8 @@ Resources:
             TableName: !Ref ItemsTable
       Environment:
         Variables:
-          NODE_OPTIONS: --require otel      
+          NODE_OPTIONS: "--require otel" 
+          OTEL_COLLECTOR: "http://"
       Events:
         GetAllItems:
           Type: HttpApi
